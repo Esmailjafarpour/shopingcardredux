@@ -6,6 +6,7 @@ const shorten = (title) => {
 
 const isInCart = (state,id) => {
      const result = !!state.selectedItem.find(item => item.id === id);
+     // console.log("result",result)
      return result;
 }
 

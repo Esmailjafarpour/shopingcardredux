@@ -15,8 +15,6 @@ const sumItems = items => {
 
 const cartReducer = (state = initialState , action) => {
 
-     console.log(state)
-
      switch (action.type) {
 
                case "ADD_ITEM":
@@ -27,6 +25,11 @@ const cartReducer = (state = initialState , action) => {
                     })
 
                     }
+                    //state.selectedItem => [{},{},{}] ===>> array of objects
+                    //...state.selectedItem => {},{},{} ===>> objects
+                    //[state.selectedItem] => [ [ {},{},{} ] ] ===>> array of array of objects
+                    //[...state.selectedItem] => [ {},{},{} ]  ===>> array of objects
+                    //selectedItem :  [...state.selectedItem] === selectedItem : state.selectedItem  ===>> array of objects
                     return{
                          ...state ,
                          selectedItem :  [...state.selectedItem],
@@ -34,10 +37,12 @@ const cartReducer = (state = initialState , action) => {
                          checkout : false 
                     }
                          
-                    
 
                case "REMOVE_ITEM":
                     const newSelectedItem = state.selectedItem.filter(item => item.id  !== action.payload.id)
+                    // newSelectedItem => [{},{},{}]
+                    // ...newSelectedItem === {},{},{}
+                    // [ ...newSelectedItem ] => [ {},{},{} ]
                     return{
                          ...state ,
                          selectedItem : [...newSelectedItem],
